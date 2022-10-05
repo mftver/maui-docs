@@ -164,7 +164,12 @@ Create a business object class `Event` with mandatory fields `From,` `To,` and `
 {% endhighlight %}
 {% endtabs %}
 
+<<<<<<< Updated upstream
 The [ReminderMapping] provides the mapping information about the [SchedulerReminder] properties to the [DataItem] object. `ReminderMapping` has the following properties.
+=======
+The [ReminderMapping](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Scheduler.SchedulerAppointmentMapping.html#Syncfusion_Maui_Scheduler_SchedulerAppointmentMapping_ReminderMapping) provides the mapping information about the [SchedulerReminder](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Scheduler.SchedulerReminder.html) properties to the 
+[DataItem](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Scheduler.SchedulerAppointment.html#Syncfusion_Maui_Scheduler_SchedulerAppointment_DataItem) object. `ReminderMapping` has the following properties.
+>>>>>>> Stashed changes
 
 * [TimeBeforeStart]: Maps the property name of a custom class, which is equivalent to the [SchedulerReminder.TimeBeforeStart].
 
@@ -192,7 +197,11 @@ public class Reminder
 {% endhighlight %}
 {% endtabs %}
 
+<<<<<<< Updated upstream
 Map those properties of the `Event` class with the [SfScheduler] control by using the [AppointmentMapping] and map `CustomReminder` properties with the [SchedulerReminder] by using [ReminderMapping].
+=======
+Map those properties of the `Event` class with the [SfScheduler](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Scheduler.html) control by using the [SchedulerAppointmentMapping](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Scheduler.SchedulerAppointmentMapping.html) and map `CustomReminder` properties with the [SchedulerReminder](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Scheduler.SchedulerReminder.html) by using [SchedulerReminderMapping](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Scheduler.SchedulerReminderMapping.html).
+>>>>>>> Stashed changes
 
 {% tabs %}
 {% highlight xaml tabtitle="MainPage.xaml" hl_lines="3 17 18 19 20" %}
