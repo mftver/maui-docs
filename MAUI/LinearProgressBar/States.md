@@ -1,15 +1,15 @@
 ---
 layout: post
-title: States in .NET MAUI SfLinearProgressBar control | Syncfusion
-description: Learn here all about States support in Syncfusion .NET MAUI SfLinearProgressBar (Progress Bar) control and more.
+title: States in .NET MAUI Linear ProgressBar control | Syncfusion
+description: Learn here all about States support in Syncfusion .NET MAUI Linear ProgressBar (SfLinearProgressBar) control and more.
 platform: MAUI
 control: SfLinearProgressBar
 documentation: ug
 ---
 
-# States in .NET MAUI SfLinearProgressBar (Linear Progress Bar)
+# States in .NET MAUI Linear ProgressBar (SfLinearProgressBar)
 
-Configure the states of the progress bar control depending on the usage.
+Configure the states of the linear progress bar control depending on the usage.
 
 ## Determinate
 
@@ -17,7 +17,7 @@ This is the default state. Use it when the progress estimation is known.
 
 ## Indeterminate
 
-By enabling the `IsIndeterminate` property, the state of the progress bar can be changed to indeterminate when the progress cannot be estimated or is not being calculated. It can be combined with a determinate mode to know that the application estimates progress before the actual progress starts.
+By enabling the [`IsIndeterminate`](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.ProgressBar.ProgressBarBase.html#Syncfusion_Maui_ProgressBar_ProgressBarBase_IsIndeterminate) property, the state of the linear progress bar can be changed to indeterminate when the progress cannot be estimated or is not being calculated. It can be combined with a determinate mode to know that the application estimates progress before the actual progress starts.
 
 {% tabs %} 
 
@@ -36,9 +36,11 @@ this.Content = linearProgressBar;
 
 {% endtabs %} 
 
+![.NET MAUI Linear ProgressBar with buffer](images\states\linear-progressbar-indeterminate.gif)
+
 ## Buffer
 
-The secondary task’s progress can be defined using the `SecondaryProgress` property as demonstrated in the following code sample.
+The secondary task’s progress can be defined using the [`SecondaryProgress`](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.ProgressBar.SfLinearProgressBar.html#Syncfusion_Maui_ProgressBar_SfLinearProgressBar_SecondaryProgress) property as demonstrated in the following code sample.
 
 {% tabs %} 
 
@@ -60,6 +62,6 @@ this.Content = linearProgressBar;
 
 {% endtabs %} 
 
-![.NET MAUI ProgressBar with buffer](images\states\buffer.png)
+![.NET MAUI Linear ProgressBar with buffer](images\states\buffer.png)
 
-N> Refer to our `.NET MAUI SfLinearProgressBar` feature tour page for its groundbreaking feature representations. Also explore our [.NET MAUI SfLinearProgressBar example](https://github.com/syncfusion/maui-demos/) that shows how to configure a SfLinearProgressBar in .NET MAUI.
+N> Refer to our [.NET MAUI Linear ProgressBar](https://www.syncfusion.com/maui-controls/maui-progressbar) feature tour page for its groundbreaking feature representations. Also explore our [.NET MAUI Linear ProgressBar example](https://github.com/syncfusion/maui-demos/) that shows how to configure a SfLinearProgressBar in .NET MAUI.
