@@ -267,7 +267,7 @@ this.Content = chart;
 
 ![Spline types chart in MAUI Chart](Chart-types_images/maui_spline_types_chart.png)
 
-### Enable Marker
+## Enable Marker
 
 A marker, also known as a symbol, is used to determine or highlight the position of the data point. To enable markers in the series, set the [ShowMarkers]() property to true.
 
@@ -305,6 +305,8 @@ this.Content= chart;
 {% endhighlight %}
 
 {% endtabs %}
+
+![Marker support in MAUI Chart](Chart-types_images/marker_support.png)
 
 ### Marker customization
 
