@@ -185,10 +185,10 @@ The [ItemTemplate]() property helps you to decorate drop-down items using the cu
     //Model.cs
     public class Employee
     {
-        public string? Name { get; set; }
-        public string? ProfilePicture { get; set; }
-        public string? Designation { get; set; }
-        public string? ID { get; set; }
+        public string Name { get; set; }
+        public string ProfilePicture { get; set; }
+        public string Designation { get; set; }
+        public string ID { get; set; }
     }
 
     //ViewModel.cs
@@ -267,6 +267,75 @@ The [ItemTemplate]() property helps you to decorate drop-down items using the cu
     </editors:SfComboBox>
 
 {% endhighlight %}
+{% highlight C# %}
+
+    EmployeeViewModel employee = new EmployeeViewModel();
+
+    SfComboBox comboBox = new SfComboBox()
+        {
+            HeightRequest = 34,
+            WidthRequest = 280,
+            BindingContext = employee,
+            ItemsSource = employee.Employees,
+            DisplayMemberPath = "Name",
+            Placeholder = "Enter an employee",
+            TextMemberPath = "Name",
+        };
+
+    DataTemplate itemTemplate = new DataTemplate(() =>
+    {
+        Grid grid = new();
+        grid.Margin = new Thickness(0, 5);
+        grid.HorizontalOptions = LayoutOptions.Center;
+        grid.VerticalOptions = LayoutOptions.Center;
+        ColumnDefinition colDef1 = new ColumnDefinition() { Width = 48 };
+        ColumnDefinition colDef2 = new ColumnDefinition() { Width = 220 };
+        RowDefinition rowDef = new RowDefinition() { Height = 50 };
+        grid.ColumnDefinitions.Add(colDef1);
+        grid.ColumnDefinitions.Add(colDef2);
+        grid.RowDefinitions.Add(rowDef);
+
+        Image image = new();
+        image.HorizontalOptions = LayoutOptions.Center;
+        image.VerticalOptions = LayoutOptions.Center;
+        image.Aspect = Aspect.AspectFit;
+        image.SetBinding(Image.SourceProperty, ("ProfilePicture"));
+        Grid.SetColumn(image, 0);
+
+        StackLayout stack = new();
+        stack.Orientation = StackOrientation.Vertical;
+        stack.Margin = new Thickness(15, 0,0,0);
+        stack.HorizontalOptions = LayoutOptions.Start;
+        stack.VerticalOptions = LayoutOptions.Center;
+        Grid.SetColumn(stack, 1);
+
+        Label label = new();
+        label.SetBinding(Label.TextProperty, "Name");
+        label.FontSize = 14;
+        label.VerticalOptions = LayoutOptions.Center;
+        label.HorizontalTextAlignment = TextAlignment.Start;
+        label.Opacity = .87;
+
+        Label label1 = new();
+        label1.SetBinding(Label.TextProperty, "Designation");
+        label1.FontSize = 12;
+        label1.VerticalOptions = LayoutOptions.Center;
+        label1.HorizontalTextAlignment = TextAlignment.Start;
+        label1.Opacity = .54;
+
+        stack.Children.Add(label);
+        stack.Children.Add(label1);
+
+        grid.Children.Add(image);
+        grid.Children.Add(stack);
+
+        return new ViewCell { View = grid };
+    });
+    comboBox.ItemTemplate = itemTemplate;
+
+    this.Content = comboBox;
+
+{% endhighlight %}
 {% endtabs %}
 
 The following gif image illustrates the result of the above code:
@@ -283,10 +352,10 @@ The [ItemTemplate]() property helps you to decorate drop-down items conditionall
     //Model.cs
     public class Employee
     {
-        public string? Name { get; set; }
-        public string? ProfilePicture { get; set; }
-        public string? Designation { get; set; }
-        public string? ID { get; set; }
+        public string Name { get; set; }
+        public string ProfilePicture { get; set; }
+        public string Designation { get; set; }
+        public string ID { get; set; }
     }
 
     //ViewModel.cs
@@ -343,15 +412,15 @@ The [ItemTemplate]() property helps you to decorate drop-down items conditionall
 
     public class EmployeeTemplateSelector : DataTemplateSelector
     {
-        public DataTemplate? EmployeeTemplate1 { get; set; }
-        public DataTemplate? EmployeeTemplate2 { get; set; }
+        public DataTemplate EmployeeTemplate1 { get; set; }
+        public DataTemplate EmployeeTemplate2 { get; set; }
 
-        protected override DataTemplate? OnSelectTemplate(object item, BindableObject container)
+        protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             var employeeName = ((Employee)item).Name;
             {
-                if (employeeName?.ToString() == "Anne Dodsworth" || employeeName?.ToString() == "Emilio Alvaro" ||
-                    employeeName?.ToString() == "Laura Callahan")
+                if (employeeName.ToString() == "Anne Dodsworth" || employeeName.ToString() == "Emilio Alvaro" ||
+                    employeeName.ToString() == "Laura Callahan")
                 {
                     return EmployeeTemplate1;
                 }
@@ -458,6 +527,133 @@ The [ItemTemplate]() property helps you to decorate drop-down items conditionall
 </Grid>
 
 {% endhighlight %}
+{% highlight C# %}
+
+    EmployeeViewModel employee = new EmployeeViewModel();
+
+    DataTemplate employeeTemplate1 = new DataTemplate(() =>
+    {
+        Grid grid = new();
+        grid.Margin = new Thickness(0, 5);
+        grid.HorizontalOptions = LayoutOptions.Center;
+        grid.VerticalOptions = LayoutOptions.Center;
+        ColumnDefinition colDef1 = new ColumnDefinition() { Width = 48 };
+        ColumnDefinition colDef2 = new ColumnDefinition() { Width = 220 };
+        RowDefinition rowDef = new RowDefinition() { Height = 50 };
+        grid.ColumnDefinitions.Add(colDef1);
+        grid.ColumnDefinitions.Add(colDef2);
+        grid.RowDefinitions.Add(rowDef);
+
+        Image image = new();
+        image.HorizontalOptions = LayoutOptions.Center;
+        image.VerticalOptions = LayoutOptions.Center;
+        image.Aspect = Aspect.AspectFit;
+        image.SetBinding(Image.SourceProperty, ("ProfilePicture"));
+        Grid.SetColumn(image, 0);
+
+        StackLayout stack = new();
+        stack.Orientation = StackOrientation.Vertical;
+        stack.Margin = new Thickness(15, 0,0,0);
+        stack.HorizontalOptions = LayoutOptions.Start;
+        stack.VerticalOptions = LayoutOptions.Center;
+        Grid.SetColumn(stack, 1);
+
+        Label label = new();
+        label.SetBinding(Label.TextProperty, "Name");
+        label.FontSize = 14;
+        label.TextColor = Colors.Blue;
+        label.VerticalOptions = LayoutOptions.Center;
+        label.HorizontalTextAlignment = TextAlignment.Start;
+        label.Opacity = .87;
+
+        Label label1 = new();
+        label1.SetBinding(Label.TextProperty, "Designation");
+        label1.FontSize = 12;
+        label1.TextColor = Colors.Coral;
+        label1.VerticalOptions = LayoutOptions.Center;
+        label1.HorizontalTextAlignment = TextAlignment.Start;
+        label1.Opacity = .54;
+
+        stack.Children.Add(label);
+        stack.Children.Add(label1);
+
+        grid.Children.Add(image);
+        grid.Children.Add(stack);
+
+        return new ViewCell { View = grid };
+    });
+
+    DataTemplate employeeTemplate2 = new DataTemplate(() =>
+    {
+        Grid grid = new();
+        grid.Margin = new Thickness(0, 5);
+        grid.HorizontalOptions = LayoutOptions.Center;
+        grid.VerticalOptions = LayoutOptions.Center;
+        ColumnDefinition colDef1 = new ColumnDefinition() { Width = 48 };
+        ColumnDefinition colDef2 = new ColumnDefinition() { Width = 220 };
+        RowDefinition rowDef = new RowDefinition() { Height = 50 };
+        grid.ColumnDefinitions.Add(colDef1);
+        grid.ColumnDefinitions.Add(colDef2);
+        grid.RowDefinitions.Add(rowDef);
+
+        Image image = new();
+        image.HorizontalOptions = LayoutOptions.Center;
+        image.VerticalOptions = LayoutOptions.Center;
+        image.Aspect = Aspect.AspectFit;
+        image.SetBinding(Image.SourceProperty, ("ProfilePicture"));
+        Grid.SetColumn(image, 0);
+
+        StackLayout stack = new();
+        stack.Orientation = StackOrientation.Vertical;
+        stack.Margin = new Thickness(15, 0, 0, 0);
+        stack.HorizontalOptions = LayoutOptions.Start;
+        stack.VerticalOptions = LayoutOptions.Center;
+        Grid.SetColumn(stack, 1);
+
+        Label label = new();
+        label.SetBinding(Label.TextProperty, "Name");
+        label.FontSize = 14;
+        label.TextColor = Colors.Red;
+        label.VerticalOptions = LayoutOptions.Center;
+        label.HorizontalTextAlignment = TextAlignment.Start;
+        label.Opacity = .87;
+
+        Label label1 = new();
+        label1.SetBinding(Label.TextProperty, "Designation");
+        label1.FontSize = 12;
+        label1.TextColor = Colors.Green;
+        label1.VerticalOptions = LayoutOptions.Center;
+        label1.HorizontalTextAlignment = TextAlignment.Start;
+        label1.Opacity = .54;
+
+        stack.Children.Add(label);
+        stack.Children.Add(label1);
+
+        grid.Children.Add(image);
+        grid.Children.Add(stack);
+
+        return new ViewCell { View = grid };
+    });
+
+    EmployeeTemplateSelector employeeTemplateSelector = new EmployeeTemplateSelector();
+    employeeTemplateSelector.EmployeeTemplate1 = employeeTemplate1;
+    employeeTemplateSelector.EmployeeTemplate2 = employeeTemplate2;
+
+    SfComboBox comboBox = new SfComboBox()
+    {
+        HeightRequest = 34,
+        WidthRequest = 280,
+        BindingContext = employee,
+        ItemsSource = employee.Employees,
+        DisplayMemberPath = "Name",
+        Placeholder = "Enter an employee",
+        TextMemberPath = "Name",
+        ItemTemplate = employeeTemplateSelector,
+    };
+
+    this.Content = comboBox;
+
+{% endhighlight %}
 {% endtabs %}
 
 The following gif image illustrates the result of the above code:
@@ -488,12 +684,16 @@ The [Completed]() event is raised when the user finalizes the text in the [SfCom
 {% endhighlight %}
 {% endtabs %}
 
+Completed event can be subscribed in C# also:
+
+{% tab %}
+{% highlight C# %}
+
+    combobox.Completed+=combobox_Completed;
+
+{% endhighlight %}
+{% endtabs %}
+
 The following image illustrates the result of the above code:
 
-![.NET MAUI ComboBox maximum drop-down height](Images/UICustomization/CompletedEvent.png)
-
-## Text
-
-The [Text]() property used to gets the user-submitted text in the [SfComboBox](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Inputs.SfComboBox.html) editable mode. The default value of the `Text` property is `string.Empty`.
-
-N> [Text]() property is Read only.
+![.NET MAUI ComboBox completed event](Images/UICustomization/CompletedEvent.png)
